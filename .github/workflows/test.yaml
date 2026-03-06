@@ -36,7 +36,7 @@ jobs:
     - name: Install requirements
       run: |
         pip install -r build-requirements.txt
-        pip install -r requirements.txt
+        pip install -e .
         pip install rdkit==2023.3.2
     - name: Lint
       run: pre-commit run --all-files
