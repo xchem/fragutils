@@ -1,0 +1,59 @@
+---
+name: Test
+
+# Actions that take place after every commit
+# Here every commit is built, tagged as 'latest' and tested.
+#
+# Actions also run on a schedule - the the container is built, tested
+# and pushed (if the relevant secrets are set) based on
+# a defined schedule.
+
+on:
+  push:
+    branches:
+    - '*'
+    tags-ignore:
+    - '**'
+  schedule:
+  # Build every Sunday (0) at 4:45pm
+  - cron: '45 16 * * 0'
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+        - "3.10"
+        - "3.11"
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install requirements
+      run: |
+        pip install -r build-requirements.txt
+        pip install -e .
+        pip install rdkit==2023.3.2
+    - name: Lint
+      run: pre-commit run --all-files
+    - name: Test
+      run: python -m unittest
+
+  image:
+    runs-on: ubuntu-latest
+    needs:
+    - source
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+    - name: Build
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        tags: xchem/frag:latest
+    - name: Test
+      run: docker run xchem/frag:latest /bin/sh -c "cd /usr/local/frag && python -m unittest"

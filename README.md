@@ -1,11 +1,11 @@
-# Fragalysis Package
+# Frag
 
-[![build latest](https://github.com/xchem/fragalysis-package/actions/workflows/build-latest.yml/badge.svg)](https://github.com/xchem/fragalysis-package/actions/workflows/build-latest.yml)
-[![pip release](https://github.com/xchem/fragalysis-package/actions/workflows/pip-release.yml/badge.svg)](https://github.com/xchem/fragalysis-package/actions/workflows/pip-release.yml)
+[![test](https://github.com/xchem/frag/actions/workflows/test.yaml/badge.svg)](https://github.com/xchem/frag/actions/workflows/test.yaml)
+[![release](https://github.com/xchem/frag/actions/workflows/release.yaml/badge.svg)](https://github.com/xchem/frag/actions/workflows/release.yaml)
 
-[![License](http://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://github.com/xchem/fragalysis-package/blob/master/LICENSE.txt)
+[![License](http://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://github.com/xchem/frag/blob/master/LICENSE.txt)
 
-![PyPI](https://img.shields.io/pypi/v/fragalysis-package)
+![PyPI](https://img.shields.io/pypi/v/xchem-frag)
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -13,10 +13,8 @@
 Basic RDKit based Python tools for analysis of protein-ligand interactions.
 
 >   This was originally the fragalysis GitHub repository, which is now being used for
-    another purpose. You can still find the original package on PyPI at
-    https://pypi.org/project/fragalysis/ where the latest version posted was v1.1.0.
-    All new releases of this package will come from here, with the new name
-    `fragalysis-package`.
+    another purpose. All new releases of this package will come from here,
+    with the new name `xchem-frag`.
 
 Currently contains: -
 
@@ -49,10 +47,8 @@ state of the repository as it stands with...
     pre-commit run --all-files
 
 ## Publishing (to PyPI)
-If the repository has been provided with a `PYPI_APIKEY` **Secret**
-the GitHub `pip-release` workflow action will automatically publish the package to
-PyPI when you create a new **Release**. The package version will be set using
-the release `tag_name`.
+We rely on out **release** GitHub workflow to publish to PyPI, something that
+is done automatically when the repository main branch is tagged.
 
 ---
 
