@@ -10,9 +10,6 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, "README.rst"), encoding="utf-8") as f:
     long_description = f.read()
 
-with open("requirements.txt") as f:
-    required = f.read().splitlines()
-
 setup(
     name="xchem-frag",
     version=environ.get("GITHUB_REF_NAME", "1.0.0"),
@@ -46,7 +43,13 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=required,
+    install_requires=[
+        "neo4j-driver==4.4.11",
+        "ipython>5.4.1",
+        "tqdm>=4.65.0",
+        "numpy>=1.25.2",
+        "requests>=2.31.0",
+    ],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
