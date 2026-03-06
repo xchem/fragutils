@@ -15,5 +15,5 @@ RUN apt-get --allow-releaseinfo-change update && \
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-ADD . /usr/local/fragalysis
-RUN pip install /usr/local/fragalysis
+ADD . /usr/local/frag
+RUN pip install /usr/local/frag
