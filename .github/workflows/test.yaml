@@ -33,10 +33,12 @@ jobs:
       uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Lint
+    - name: Install requirements
       run: |
         pip install -r build-requirements.txt
-        pre-commit run --all-files
+        pip install rdkit==2023.3.2
+    - name: Lint
+      run: pre-commit run --all-files
     - name: Test
       run: python -m unittest
 
