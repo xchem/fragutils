@@ -1,6 +1,6 @@
 # Frag
 
-[![build latest](https://github.com/xchem/frag/actions/workflows/build-latest.yml/badge.svg)](https://github.com/xchem/frag/actions/workflows/build-latest.yml)
+[![test](https://github.com/xchem/frag/actions/workflows/test.yaml/badge.svg)](https://github.com/xchem/frag/actions/workflows/test.yaml)
 [![release](https://github.com/xchem/frag/actions/workflows/release.yaml/badge.svg)](https://github.com/xchem/frag/actions/workflows/release.yaml)
 
 [![License](http://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://github.com/xchem/frag/blob/master/LICENSE.txt)
