@@ -1,5 +1,5 @@
 from rdkit import Chem
-from frag.utils.network_utils import get_num_ring_atoms, get_type, simplified_graph
+from fragutils.utils.network_utils import get_num_ring_atoms, get_type, simplified_graph
 
 
 class NodeHolder(object):

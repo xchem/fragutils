@@ -1,6 +1,6 @@
 # Series of functions to parse input files
-from frag.alysis.models import Object, Owner
-from frag.utils.rdkit_utils import (
+from fragutils.alysis.models import Object, Owner
+from fragutils.utils.rdkit_utils import (
     _parse_ligand_sdf,
     _get_c_of_mass,
     RDKitPh4,

@@ -1,7 +1,7 @@
 import random
 import logging
 
-from frag.utils.network_utils import write_results, get_driver, canon_input
+from fragutils.utils.network_utils import write_results, get_driver, canon_input
 
 logger = logging.getLogger(__name__)
 

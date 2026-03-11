@@ -1,7 +1,7 @@
 from rdkit import Chem
 from rdkit.Geometry.rdGeometry import Point3D
 from rdkit.Chem import AllChem, RWMol, Atom
-from frag.utils.network_utils import (
+from fragutils.utils.network_utils import (
     rebuild_smi,
     get_ring_ring_splits,
     get_fragments,
