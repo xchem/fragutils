@@ -83,10 +83,10 @@ class NetworksTest(unittest.TestCase):
         :return:
         """
         try:
-            with open("frag/tests/data/nodes.txt", encoding="utf8") as n_file:
+            with open("fragutils/tests/data/nodes.txt", encoding="utf8") as n_file:
                 nodes: list[str] = n_file.readlines()
             attrs: list[Attr] = []
-            with open("frag/tests/data/attributes.txt", encoding="utf8") as n_file:
+            with open("fragutils/tests/data/attributes.txt", encoding="utf8") as n_file:
                 attrs.extend(Attr(input_str=line) for line in n_file)
         except IOError:
             with open("data/nodes.txt", encoding="utf8") as n_file:
@@ -109,10 +109,10 @@ class NetworksTest(unittest.TestCase):
         :return:
         """
         try:
-            with open("frag/tests/data/nodes.txt", encoding="utf8") as n_file:
+            with open("fragutils", encoding="utf8") as n_file:
                 nodes: list[str] = n_file.readlines()
             attrs: list[Attr] = []
-            with open("frag/tests/data/attributes.txt", encoding="utf8") as n_file:
+            with open("fragutils/tests/data/attributes.txt", encoding="utf8") as n_file:
                 attrs.extend(Attr(input_str=line) for line in n_file)
         except IOError:
             with open("data/nodes.txt", encoding="utf8") as n_file:
