@@ -45,10 +45,14 @@ setup(
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
         "neo4j-driver==4.4.11",
-        "ipython>5.4.1",
-        "tqdm>=4.65.0",
-        "numpy>=1.25.2",
-        "requests>=2.31.0",
+        "ipython>5.4.1,<6",
+        "tqdm>=4.65.0,<5",
+        # March 11th 2026.
+        # To avoid errors with numpy 2.4.3 like this...
+        #   A module that was compiled using NumPy 1.x cannot be run in NumPy 2.4.3 as it may crash.
+        # ...we limit ourselves to numpy v1.x until someone fixes this problem.
+        "numpy>=1.25.2,<2",
+        "requests>=2.31.0,<3",
     ],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
