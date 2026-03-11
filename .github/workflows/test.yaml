@@ -54,6 +54,6 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: .
-        tags: xchem/frag:latest
+        tags: xchem/fragutils:latest
     - name: Test
-      run: docker run xchem/frag:latest /bin/sh -c "cd /usr/local/frag && python -m unittest"
+      run: docker run xchem/fragutils:latest /bin/sh -c "cd /usr/local/fragutils && python -m unittest"
