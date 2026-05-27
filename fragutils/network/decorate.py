@@ -213,16 +213,14 @@ def find_atom_pairs(smiles_input, get_indices, iso_smiles):
     :return:
     """
     matches = re.findall(XE_PATT, smiles_input)
-    if iso_smiles:
-        iso_matches = re.findall(XE_PATT, iso_smiles)
-    else:
-        iso_matches = None
-        isotope = None
+    iso_matches = re.findall(XE_PATT, iso_smiles) if iso_smiles else []
     ind_list = []
     for i, match in enumerate(matches):
         index = int(match[:-2])
-        if iso_matches:
-            isotope = int(iso_matches[i][:-2])
+        # iso_matches may be shorter than (or misaligned with) matches when the
+        # isomeric SMILES yields fewer [<n>Xe] tokens; fall back to no isotope
+        # rather than raising IndexError (xchem/fragutils#40).
+        isotope = int(iso_matches[i][:-2]) if i < len(iso_matches) else None
         indices = ret_comb_index(index, get_indices, isotope)
         ind_list.append(indices)
     return ind_list
