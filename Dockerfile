@@ -1,4 +1,4 @@
-FROM python:3.11.15-slim
+FROM python:3.13-slim
 
 USER root
 RUN apt-get --allow-releaseinfo-change update \
@@ -8,7 +8,7 @@ RUN apt-get --allow-releaseinfo-change update \
         libsm6 \
         libxrender1 \
         procps \
-    && pip install rdkit==2023.3.2 \
+    && pip install rdkit==2025.3.6 \
     && git clone https://github.com/rdkit/mmpdb /usr/local/mmpdb \
     && pip install /usr/local/mmpdb
 

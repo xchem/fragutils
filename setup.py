@@ -28,11 +28,15 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Build Tools",
         "License :: OSI Approved :: Apache Software License",
-        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
     ],
     # What does your project relate to?
     keywords="",
+    # numpy 2.3 (see install_requires) needs Python >= 3.11.
+    python_requires=">=3.11",
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     packages=find_packages(exclude=["contrib", "docs", "tests"]),
@@ -47,11 +51,10 @@ setup(
         "neo4j-driver == 4.4.11",
         "ipython > 5.4.1, < 6",
         "tqdm >= 4.65.0, < 5",
-        # March 11th 2026.
-        # To avoid errors with numpy 2.4.3 like this...
-        #   A module that was compiled using NumPy 1.x cannot be run in NumPy 2.4.3 as it may crash.
-        # ...we limit ourselves to numpy v1.x until someone fixes this problem.
-        "numpy >= 1.25, < 2",
+        # numpy 2.x to align with fragalysis-backend (numpy ^2.3).
+        # numpy 2.3 requires Python >= 3.11, so this is a breaking change
+        # released as fragutils v2.x. See issue #52.
+        "numpy >= 2.3, < 3",
         "requests >= 2.31.0, < 3",
     ],
     # List additional groups of dependencies here (e.g. development
