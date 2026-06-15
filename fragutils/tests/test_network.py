@@ -16,6 +16,7 @@ from fragutils.network.decorate import (
     deletion_linker_mol,
     deletion_linker_smi,
     del_link_coord,
+    find_atom_pairs,
 )
 
 
@@ -224,6 +225,24 @@ class NetworksTest(unittest.TestCase):
             self.assertTupleEqual(
                 ret_comb_index(get_comb_index(data[0], data[1])), data
             )
+
+    def test_find_atom_pairs_iso_mismatch(self):
+        """
+        find_atom_pairs must not raise when the isomeric SMILES yields fewer
+        [<n>Xe] tokens than the plain SMILES (xchem/fragutils#40). The extra,
+        unmatched positions fall back to isotope=None instead of IndexError.
+        """
+        # smiles_input has two numbered-Xe tokens, iso_smiles only one.
+        res = find_atom_pairs("C[100Xe].C[102Xe]", True, "C[105Xe]")
+        self.assertEqual(len(res), 2)
+        # First position pairs with the single iso token, second falls back.
+        self.assertEqual(res[0][2], 105)
+        self.assertIsNone(res[1][2])
+
+        # Empty iso SMILES previously left `isotope` unbound; ensure it is None.
+        res = find_atom_pairs("C[100Xe].C[102Xe]", True, "")
+        self.assertEqual(len(res), 2)
+        self.assertTrue(all(pair[2] is None for pair in res))
 
     def test_ring_ring_smi(self):
         input_smi = "CC(=O)NC=1C=CC(=CC1)C2=CSC(N)=N2"
