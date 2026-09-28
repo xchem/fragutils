@@ -304,20 +304,22 @@ def get_type(smiles):
 def get_driver(url="neo4j", neo4j_auth="neo4j/neo4j"):
     """
     Get the driver to the network connection using the bolt service
-    at the URI provided. If an authentication string is provided
+    at the URI provided. The url is either a bare hostname (e.g. 'graph.graph-a.svc'),
+    which is connected to using plain 'bolt://<url>:7687', or a complete URI with
+    a scheme (e.g. 'bolt+s://graph-x.xchem-dev.diamond.ac.uk:7687'), which is used
+    unchanged - allowing encrypted connections. If an authentication string is provided
     (i.e. a typical NEO4J_AUTH value of <username>/<password>) then
     authentication is assumed.
     :return: the driver for the graph database
     """
     from neo4j import GraphDatabase
 
+    uri = url if "://" in url else "bolt://" + url + ":7687"
     auth_parts = neo4j_auth.split("/")
     if len(auth_parts) == 2:
-        driver = GraphDatabase.driver(
-            "bolt://" + url + ":7687", auth=(auth_parts[0], auth_parts[1])
-        )
+        driver = GraphDatabase.driver(uri, auth=(auth_parts[0], auth_parts[1]))
     else:
-        driver = GraphDatabase.driver("bolt://" + url + ":7687")
+        driver = GraphDatabase.driver(uri)
 
     return driver
 
