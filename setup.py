@@ -49,7 +49,7 @@ setup(
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=[
         "neo4j-driver == 4.4.11",
-        "ipython > 5.4.1, < 6",
+        "ipython > 5.4.1",
         "tqdm >= 4.65.0, < 5",
         # numpy 2.x to align with fragalysis-backend (numpy ^2.3).
         # numpy 2.3 requires Python >= 3.11, so this is a breaking change
